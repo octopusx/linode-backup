@@ -13,3 +13,9 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# Environment variables for local development
+development.env
+
+# Program binary
+linode-backup

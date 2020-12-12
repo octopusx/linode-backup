@@ -1,0 +1,16 @@
+ARG BASE_IMAGE_NAME=${BASE_IMAGE_NAME}
+FROM ${BASE_IMAGE_NAME} as builder
+
+RUN go build .
+
+FROM alpine:3.10.3
+
+
+WORKDIR /app
+COPY --from=builder /go/src/github.com/octopusx/linode-backup/linode-backup /app/
+
+ENTRYPOINT ["/app/entrypoint.sh"]
+
+COPY entrypoint.sh .
+
+CMD ./linode-backup
